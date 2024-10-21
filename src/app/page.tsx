@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import CustomSelect from './components/index';
+import { Suspense } from 'react';
 import Filtration from './components/Filtration/filtration';
+import Loading from './components/Loading/loading';
 
 export default async function Home() {
   let data = await fetch(
@@ -14,7 +14,9 @@ export default async function Home() {
         Select your vehicle car make and model year
       </h1>
       <div>
-        <Filtration vehicleMakes={vehicleMakes?.Results} />
+        <Suspense fallback={<Loading />}>
+          <Filtration vehicleMakes={vehicleMakes?.Results} />
+        </Suspense>
       </div>
     </div>
   );
