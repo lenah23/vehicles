@@ -5,11 +5,11 @@ export const vehiclesApi = createApi({
   reducerPath: 'vehiclesApi',
   tagTypes: ['vehicles'],
   baseQuery: axiosBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_BASEURL }),
-  endpoints: (builder) => ({
-    getVehiclesList: builder.query<any, any>({
+  endpoints: builder => ({
+    getVehiclesList: builder.query<any, void>({
       query() {
         return {
-          url: `/`,
+          url: `/vehicles/GetMakesForVehicleType/car?format=json`,
           method: 'GET',
         };
       },
@@ -18,4 +18,4 @@ export const vehiclesApi = createApi({
   }),
 });
 
-export const {} = vehiclesApi;
+export const { useGetVehiclesListQuery } = vehiclesApi;
